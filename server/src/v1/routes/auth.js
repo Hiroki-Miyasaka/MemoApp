@@ -8,7 +8,7 @@ const validation = require("../handlers/validation");
 const userController = require("../controllers/user");
 
 router.post("/register",
-     body("username")
+    body("username")
     .isLength({min: 8})
     .withMessage("User name must be at least 8 characters long"),
     body("password")
@@ -27,6 +27,18 @@ router.post("/register",
     validation.validate,
     userController.register
 );
+
+router.post("/login",
+    body("username")
+    .isLength({min: 8})
+    .withMessage("User name must be at least 8 characters long"),
+    body("password")
+    .isLength({min: 8})
+    .withMessage("Password must be at least 8 characters long"),
+    validation.validate,
+    userController.login
+);
+    
 
 
 module.exports = router;
