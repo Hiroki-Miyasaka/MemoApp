@@ -2,6 +2,7 @@ import { Box, Button, TextField } from '@mui/material'
 import React from 'react'
 import { LoadingButton } from "@mui/lab";
 import { Link } from "react-router-dom";
+import authApi from '../api/authApi';
 
 const Register = () => {
 
@@ -14,6 +15,14 @@ const Register = () => {
         console.log(username);
         console.log(password);
         console.log(confirmPassword);
+
+        try{
+            const res = await authApi.register({username, password, confirmPassword});
+            localStorage.setItem("token", res.token);
+            console.log("registered User succ")
+        } catch (err){
+            console.log(err);
+        }
     }
 
   return (
