@@ -1,23 +1,23 @@
 import axios from "axios";
-// import queryString from "query-string"; //URLクエリを取得するため
+// import queryString from "query-string"; //To retrieve URL queries
 
 const BASE_URL = "http://localhost:5000/api/v1";
 const getToken = () => localStorage.getItem("token");
 
-//axiosのインスタンス化((前処理の共通化のため=全部JSON化しておく))
+//Instantiate axios ((for common preprocessing = convert everything to JSON))
 const axiosClient = axios.create({
   baseURL: BASE_URL,
-  //パラメータをJson化する。
+  //convert parameter to JSON
 //   paramsSerializer: (params) => queryString.stringify({ params }),
 });
 
-//APIを叩く前に前処理を行う
+//Perform preprocessing before hitting the API
 axiosClient.interceptors.request.use(async (config) => {
   return {
     ...config,
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${getToken()}`, //リクエストヘッダにトークンを付けてサーバーに渡す
+      authorization: `Bearer ${getToken()}`, //Pass a token in the request header to the server
     },
   };
 });
