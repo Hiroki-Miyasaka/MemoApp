@@ -26,11 +26,13 @@ exports.login = async (req, res) => {
         const user = await User.findOne({username: username});
         if(!user) {
             return res.status(401).json({
-                errors: {
+                errors: [
+                    {
                     param: "username",
-                    message: "Not exist user"
-                }
-            })
+                    msg: "Not exist user"
+                    },
+                ],
+            });
         }
 
         const descryptedPassword = CryptoJS.AES.decrypt(
@@ -40,11 +42,13 @@ exports.login = async (req, res) => {
 
         if(descryptedPassword !== password){
             return res.status(401).json({
-                errors: {
+                errors: [
+                    {
                     param: "password",
-                    message: "Incorrect password"
-                }
-            })
+                    msg: "Incorrect password"
+                    },
+                ],
+            });
         }
 
         const token = JWT.sign({id: user._id}, process.env.TOKEN_SECRET_KEY, {
