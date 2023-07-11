@@ -1,7 +1,7 @@
 import axios from "axios";
 // import queryString from "query-string"; //To retrieve URL queries
 
-const BASE_URL = "http://localhost:5000/api/v1";
+const BASE_URL = "http://localhost:3001/api/v1";
 const getToken = () => localStorage.getItem("token");
 
 //Instantiate axios ((for common preprocessing = convert everything to JSON))

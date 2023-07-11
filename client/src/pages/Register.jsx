@@ -19,7 +19,7 @@ const Register = () => {
         try{
             const res = await authApi.register({username, password, confirmPassword});
             localStorage.setItem("token", res.token);
-            console.log("registered User succ")
+            console.log("User registered")
         } catch (err){
             console.log(err);
         }

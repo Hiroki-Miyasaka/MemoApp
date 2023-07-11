@@ -11,7 +11,7 @@ app.use(cors({
 const PORT = 3001;
 
 app.use(express.json());
-app.use("/api/v1", require("./src/v1/routes/auth"));
+app.use("/api/v1", require("./src/v1/routes"));
 
 app.get("/", (req, res) => {
     res.json({
